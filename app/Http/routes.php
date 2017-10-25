@@ -14,7 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+//****************************************************************************************
+Route::get('/station/viewstation', function () {
+    return view('station/viewstation');
+});
 
+Route::get('/station','HomeController@AddStation');
+Route::post('/station','HomeController@AddStation');
+
+//***************************************************************************************
 Route::auth();
 
 Route::get('/home', 'HomeController@index');

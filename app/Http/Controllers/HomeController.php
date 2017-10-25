@@ -26,11 +26,53 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+
     }
+
+    //Station*****************************************************
     public function AddStation(Request $request){
-     
-        return view('station.viewstation');
+        if($request->isMethod('post')){
+            $newstation=new Station();
+            $newstation->idstation=$request->input('ids');
+            $newstation->nomstation=$request->input('nom');
+            $newstation->adressestation=$request->input('adresse');
+            $result=     $newstation->save();
+            if($result){
+                return response()->json(array('message'=>'ajout'));
+
+
+            }else
+            {
+                return response()->json(array('message'=>'probleme'));
+            }
+
+        }
+        return view('station/viewstation');
     }
+    //*****************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function AddGerant(){
 
