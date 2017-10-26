@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Gerant extends Model
 {
     //
+    protected $table='idStation';
 }

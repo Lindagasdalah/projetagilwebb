@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Station;
 use Illuminate\Http\Request;
+use App\idStation;
 
 class HomeController extends Controller
 {
@@ -13,6 +14,7 @@ class HomeController extends Controller
      *
      * @return void
      */
+    use Illuminate\Http\Request;
     public function __construct()
     {
         $this->middleware('auth');
@@ -27,15 +29,39 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    public function AddStation(Request $request){
+    public function liststation()
+    {
+        $station=idStation::all();
+        return view('gerant.viewgerant',compact('station'));
+    }
+   /* public function AddStation(Request $request){
      
         return view('station.viewstation');
-    }
+    }*/
 
-    public function AddGerant(){
+    public function AddGerant(Request $request){
+        if($request->isMethod('post')) {
+            $newgerant = new gerants();
+            $newgerant->cingerant = $request->input('cin');
+            $newgerant->nomgerant = $request->input('nom');
+            $newgerant->prenomgerant = $request->input('pnom');
+            $newgerant->adressegerant = $request->input('adr');
+            $newgerant->numtelgerant = $request->input('num');
+            $newgerant->idstation = $request->input('login');
+            $newgerant->login = $request->input('station');
+            $newgerant->motdepasse = $request->input('password');
+            $result = $newgerant->save();
+            if ($result) {
+                return response()->json(array(array('message'=>'ajout avec succès')));
+
+
+            } else {
+                return response()->json(array('message' => 'probleme'));
+            }
+
 
         return view('gerant.viewgerant');
-    }
+    }}
     public function Addproduit(){
 
         return view('produit.viewproduit');

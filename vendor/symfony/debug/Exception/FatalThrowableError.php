@@ -18,6 +18,10 @@ namespace Symfony\Component\Debug\Exception;
  */
 class FatalThrowableError extends FatalErrorException
 {
+    /**
+     * FatalThrowableError constructor.
+     * @param \Throwable $e
+     */
     public function __construct(\Throwable $e)
     {
         if ($e instanceof \ParseError) {
