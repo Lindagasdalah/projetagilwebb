@@ -43,7 +43,11 @@ class HomeController extends Controller
 
     public function Affclient(){
 
-        return view('client.viewclient');
+        $client=Client::all();
+        $arr=Array('client'=>$client);
+
+
+        return view('client.viewclient',$arr);
     }
 
     public function affproduit(){
