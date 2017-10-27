@@ -23,7 +23,16 @@ Route::get('/station','HomeController@AddStation');
 Route::post('/station','HomeController@AddStation');
 
 Route::get('/gerant','HomeController@AddGerant');
-Route::get('/produit','HomeController@Addproduit');
+
+Route::get('/ajoutpromotion','produitController@addpromotion');
+Route::post('/ajoutpromotion','produitController@addpromotion');
+
+
+Route::get('/p', function () {
+    return view('produit/viewproduit');
+});
+
+
 Route::get('/affproduit','HomeController@affproduit');
 Route::get('/client','HomeController@Affclient');
 
