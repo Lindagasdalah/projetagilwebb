@@ -4,16 +4,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::auth();
-
-Route::get('/home', 'HomeController@index');
-Route::get('/gerant/viewgerant', function () {
+Route::get('/gerant', function () {
     return view('gerant/viewgerant');
 });
 
 Route::get( '/gerant','HomeController@AddGerant');
 Route::post('/gerant','HomeController@AddGerant');
+Route::auth();
+Route::get('/home', 'HomeController@index');
+
+
+
 
 //Route::get('/station', /** @lang text */
    // 'HomeController@AddStation');

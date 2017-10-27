@@ -831,10 +831,10 @@ class Router implements RegistrarContract
      * @param  \Illuminate\Routing\Route  $route
      * @return \Illuminate\Routing\Route
      */
-    protected function substituteBindings($route)
+  protected function substituteBindings($route)
     {
-        foreach ($route->parameters() as $key => $value) {
-            if (isset($this->binders[$key])) {
+       foreach ($route->parameters() as $key => $value) {
+           if (isset($this->binders[$key])) {
                 $route->setParameter($key, $this->performBinding($key, $value, $route));
             }
         }

@@ -29,11 +29,22 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    public function liststation()
+   /* public function create()
+    {
+        $items = stations::all(['idstation', 'nomstation']);
+        return View::make('gerant.viewgerant', compact('items',$items));
+    }*/
+    public function indexliste(){
+        $stations = DB::table('station')->lists('idstation,','nomstation');
+
+        return view('gerant.viewgerant', ['stations'=> $stations]);
+    }
+
+   /* public function liststation()
     {
         $station=idStation::all();
         return view('gerant.viewgerant',compact('station'));
-    }
+    }*/
    /* public function AddStation(Request $request){
      
         return view('station.viewstation');
