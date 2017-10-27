@@ -15,8 +15,7 @@ class HomeController extends Controller
      * Create a new controller instance.
      *
      * @return void
-     */
-    use Illuminate\Http\Request;
+
     public function __construct()
     {
         $this->middleware('auth');

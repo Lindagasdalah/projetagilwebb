@@ -183,13 +183,11 @@
             </fieldset>
 
             <fieldset>
-                <div class="form-group">
-                    <select name="id" placeholder="choisir station!">
-                        @foreach($stations as $station)
-                            <option value="{{ $station->idstation }}">{{ $station->nomstation}}</option>
-                        @endforeach
-                    </select>
-                </div>
+                <select name="Station" value="station"  >
+                    @foreach($stations as $station)
+                        <option value="{{ $station->idstation }}">{{ $station->nomstation}}</option>
+                    @endforeach
+                </select>
             </fieldset>
 
             <fieldset>
