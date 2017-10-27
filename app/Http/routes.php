@@ -19,8 +19,8 @@ Route::get('/station/viewstation', function () {
     return view('station/viewstation');
 });
 
-Route::get('/station','HomeController@AddStation');
-Route::post('/station','HomeController@AddStation');
+Route::get('/station/viewstation','HomeController@AddStation');
+Route::post('/station/viewstation','HomeController@AddStation');
 
 //***************************************************************************************
 Route::auth();

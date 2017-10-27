@@ -176,6 +176,11 @@
 
         <fieldset>
             <input type="submit" value="Ajouter"  />
+            <br/>
+            <br/>
+            @if(Session::has('message'))
+                <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+            @endif
 
         </fieldset>
 

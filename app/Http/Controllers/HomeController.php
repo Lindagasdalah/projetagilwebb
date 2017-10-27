@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Station;
 use Illuminate\Http\Request;
-
+use Session;
 class HomeController extends Controller
 {
     /**
@@ -38,12 +38,15 @@ class HomeController extends Controller
             $newstation->adressestation=$request->input('adresse');
             $result=     $newstation->save();
             if($result){
-                return response()->json(array('message'=>'ajout'));
-
+                Session::flash('message', 'Station est bien ajoutée');
+                //return redirect('viewstation');
+                return view('station/viewstation');
 
             }else
             {
-                return response()->json(array('message'=>'probleme'));
+                Session::flash('message', '');
+                //return redirect('viewstation');
+                return view('station/viewstation');
             }
 
         }
