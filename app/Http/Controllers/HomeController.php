@@ -47,8 +47,8 @@ class HomeController extends Controller
             $newgerant->prenomgerant = $request->input('pnom');
             $newgerant->adressegerant = $request->input('adr');
             $newgerant->numtelgerant = $request->input('num');
-            $newgerant->idstation = $request->input('login');
-            $newgerant->login = $request->input('station');
+            $newgerant->idstation = $request->input('id');
+            $newgerant->login = $request->input('login');
             $newgerant->motdepasse = $request->input('password');
             $result = $newgerant->save();
             if ($result) {
@@ -62,7 +62,7 @@ class HomeController extends Controller
 
         return view('gerant.viewgerant');
     }}
-    public function Addproduit(){
+   /* public function Addproduit(){
 
         return view('produit.viewproduit');
     }
@@ -75,5 +75,5 @@ class HomeController extends Controller
     public function affproduit(){
 
         return view('produit.afficherproduit');
-    }
+    }*/
 }

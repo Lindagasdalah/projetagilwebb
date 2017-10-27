@@ -1,17 +1,16 @@
 <?php
 
 
-
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('gerant/viewgerant',function () {
-    return view('gerant/viewgerant' );
-});
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
-
+Route::get('/gerant/viewgerant', function () {
+    return view('gerant/viewgerant');
+});
 
 Route::get( '/gerant','HomeController@AddGerant');
 Route::post('/gerant','HomeController@AddGerant');

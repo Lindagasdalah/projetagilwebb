@@ -816,7 +816,7 @@ class Router implements RegistrarContract
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Routing\Route
      */
-    protected function findRoute($request)
+  protected function findRoute($request)
     {
         $this->current = $route = $this->routes->match($request);
 
