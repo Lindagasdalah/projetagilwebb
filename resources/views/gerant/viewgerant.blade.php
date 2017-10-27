@@ -183,15 +183,8 @@
             </fieldset>
 
             <fieldset>
-                <Label for="exampleInputStation" >Station:</Label>
-                <select id="idStation" name="Station">
-                    <option value="0" desabled="true" selected="true">select</option>
-                    @foreach($station as $list)
-                    <option value="{{$list->idstation}}">{{$list->nomstation}}</option>
-                    @endforeach
-                </select>
+
                 <div class="form-group">
-                  
                     <select name="Station">
                         @foreach($stations as $station)
                             <option value="{{ $station->idstation }}">{{ $station->nomstation}}</option>

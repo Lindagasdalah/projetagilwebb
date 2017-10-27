@@ -7,6 +7,7 @@ Route::get('/', function () {
 Route::get('/gerant', function () {
     return view('gerant/viewgerant');
 });
+Route::get( '/gerant','HomeController@indexliste');
 
 Route::get( '/gerant','HomeController@AddGerant');
 Route::post('/gerant','HomeController@AddGerant');
