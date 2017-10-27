@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Station;
 use App\Gerant;
 
 use Illuminate\Http\Request;
@@ -57,10 +56,11 @@ class HomeController extends Controller
         if($request->isMethod('post'))
         {
             $newgerant = new Gerant();
-            $newgerant->cingerant = $request->input('cin');
+
             $newgerant->nomgerant = $request->input('nom');
             $newgerant->prenomgerant = $request->input('pnom');
             $newgerant->adressegerant = $request->input('adr');
+            $newgerant->cingerant = $request->input('cin');
             $newgerant->numtelgerant = $request->input('num');
             $newgerant->idstation = $request->input('id');
             $newgerant->login = $request->input('login');
@@ -80,7 +80,7 @@ class HomeController extends Controller
 
         return view('gerant/viewgerant');
     }}
-   /* public function Addproduit(){
+ public function Addproduit(){
 
         return view('produit.viewproduit');
     }
@@ -93,5 +93,5 @@ class HomeController extends Controller
     public function affproduit(){
 
         return view('produit.afficherproduit');
-    }*/
+    }
 }

@@ -171,7 +171,7 @@
                 <input placeholder="Enter Prenom Gérant" type="text" name="pnom" tabindex="2" required  pattern = '[A-z]{3,20}'  maxlength ='20'>
             </fieldset>
             <fieldset>
-                <input placeholder="Enter Cin" name="cin" type="text" tabindex="3" required  pattern = '[0-9]{8}'  maxlength ='8'>
+                <input placeholder="Enter Cin" name="cin" type="text" name="cin" tabindex="3" required  pattern = '[0-9]{8}'  maxlength ='8'>
             </fieldset>
 
             <fieldset>
@@ -179,12 +179,12 @@
             </fieldset>
 
             <fieldset>
-                <input placeholder="Enter  Adresse" name="adresse" type="text" tabindex="3" required  pattern = '[A-z]{3,20}'  maxlength ='20'>
+                <input placeholder="Enter  Adresse" name="adr" type="text" tabindex="3" required  pattern = '[A-z]{3,20}'  maxlength ='20'>
             </fieldset>
 
             <fieldset>
                 <div class="form-group">
-                    <select name="Station">
+                    <select name="id" placeholder="choisir station!">
                         @foreach($stations as $station)
                             <option value="{{ $station->idstation }}">{{ $station->nomstation}}</option>
                         @endforeach
