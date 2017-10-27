@@ -42,7 +42,6 @@ class HomeController extends Controller
     }
 
     public function Affclient(){
-
         $client=Client::all();
         $arr=Array('client'=>$client);
 
