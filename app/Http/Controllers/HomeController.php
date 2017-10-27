@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Station;
+use App\Gerant;
+
 use Illuminate\Http\Request;
 use App\idStation;
+
 
 class HomeController extends Controller
 {
@@ -35,7 +38,7 @@ class HomeController extends Controller
         return View::make('gerant.viewgerant', compact('items',$items));
     }*/
     public function indexliste(){
-        $stations = DB::table('station')->lists('idstation,','nomstation');
+        $stations = agil::table('station')->lists('idstation,','nomstation');
 
         return view('gerant.viewgerant', ['stations'=> $stations]);
     }
@@ -51,8 +54,9 @@ class HomeController extends Controller
     }*/
 
     public function AddGerant(Request $request){
-        if($request->isMethod('post')) {
-            $newgerant = new gerants();
+        if($request->isMethod('post'))
+        {
+            $newgerant = new Gerant();
             $newgerant->cingerant = $request->input('cin');
             $newgerant->nomgerant = $request->input('nom');
             $newgerant->prenomgerant = $request->input('pnom');
@@ -63,15 +67,18 @@ class HomeController extends Controller
             $newgerant->motdepasse = $request->input('password');
             $result = $newgerant->save();
             if ($result) {
-                return response()->json(array(array('message'=>'ajout avec succès')));
+                Session::flash('message','Gérant est bien ajouté');
+                return view('gerant/viewgerant');
 
 
             } else {
-                return response()->json(array('message' => 'probleme'));
+                Session::flash('message','erreur');
+                return view('gerant/viewgerant');
+
             }
 
 
-        return view('gerant.viewgerant');
+        return view('gerant/viewgerant');
     }}
    /* public function Addproduit(){
 

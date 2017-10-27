@@ -4,7 +4,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/gerant', function () {
+Route::get('/gerant/viewgerant', function () {
     return view('gerant/viewgerant');
 });
 Route::get( '/gerant','HomeController@indexliste');

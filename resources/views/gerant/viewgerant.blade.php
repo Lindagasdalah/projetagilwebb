@@ -6,7 +6,6 @@
     <!DOCTYPE html>
     <html>
     <head>
-        <h1>Page Gérant</h1>
 
 
         <style>
