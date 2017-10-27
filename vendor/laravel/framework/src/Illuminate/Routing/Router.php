@@ -253,7 +253,7 @@ class Router implements RegistrarContract
         }
 
         $routable = (new ControllerInspector)
-                            ->getRoutable($prepended, $uri);
+            ->getRoutable($prepended, $uri);
 
         // When a controller is routed using this method, we use Reflection to parse
         // out all of the routable methods for the controller, then register each
@@ -466,8 +466,8 @@ class Router implements RegistrarContract
     {
         if (isset($new['namespace'])) {
             return isset($old['namespace'])
-                    ? trim($old['namespace'], '\\').'\\'.trim($new['namespace'], '\\')
-                    : trim($new['namespace'], '\\');
+                ? trim($old['namespace'], '\\').'\\'.trim($new['namespace'], '\\')
+                : trim($new['namespace'], '\\');
         }
 
         return isset($old['namespace']) ? $old['namespace'] : null;
@@ -564,8 +564,8 @@ class Router implements RegistrarContract
     protected function newRoute($methods, $uri, $action)
     {
         return (new Route($methods, $uri, $action))
-                    ->setRouter($this)
-                    ->setContainer($this->container);
+            ->setRouter($this)
+            ->setContainer($this->container);
     }
 
     /**
@@ -711,19 +711,19 @@ class Router implements RegistrarContract
     protected function runRouteWithinStack(Route $route, Request $request)
     {
         $shouldSkipMiddleware = $this->container->bound('middleware.disable') &&
-                                $this->container->make('middleware.disable') === true;
+            $this->container->make('middleware.disable') === true;
 
         $middleware = $shouldSkipMiddleware ? [] : $this->gatherRouteMiddlewares($route);
 
         return (new Pipeline($this->container))
-                        ->send($request)
-                        ->through($middleware)
-                        ->then(function ($request) use ($route) {
-                            return $this->prepareResponse(
-                                $request,
-                                $route->run($request)
-                            );
-                        });
+            ->send($request)
+            ->through($middleware)
+            ->then(function ($request) use ($route) {
+                return $this->prepareResponse(
+                    $request,
+                    $route->run($request)
+                );
+            });
     }
 
     /**
@@ -737,7 +737,7 @@ class Router implements RegistrarContract
         return Collection::make($route->middleware())->map(function ($name) {
             return Collection::make($this->resolveMiddlewareClassName($name));
         })
-        ->flatten()->all();
+            ->flatten()->all();
     }
 
     /**
@@ -755,19 +755,19 @@ class Router implements RegistrarContract
         // set of middleware under single keys that can be conveniently referenced.
         if (isset($this->middlewareGroups[$name])) {
             return $this->parseMiddlewareGroup($name);
-        // When the middleware is simply a Closure, we will return this Closure instance
-        // directly so that Closures can be registered as middleware inline, which is
-        // convenient on occasions when the developers are experimenting with them.
+            // When the middleware is simply a Closure, we will return this Closure instance
+            // directly so that Closures can be registered as middleware inline, which is
+            // convenient on occasions when the developers are experimenting with them.
         } elseif (isset($map[$name]) && $map[$name] instanceof Closure) {
             return $map[$name];
-        // Finally, when the middleware is simply a string mapped to a class name the
-        // middleware name will get parsed into the full class name and parameters
-        // which may be run using the Pipeline which accepts this string format.
+            // Finally, when the middleware is simply a string mapped to a class name the
+            // middleware name will get parsed into the full class name and parameters
+            // which may be run using the Pipeline which accepts this string format.
         } else {
             list($name, $parameters) = array_pad(explode(':', $name, 2), 2, null);
 
             return (isset($map[$name]) ? $map[$name] : $name).
-                   ($parameters !== null ? ':'.$parameters : '');
+                ($parameters !== null ? ':'.$parameters : '');
         }
     }
 
@@ -816,7 +816,7 @@ class Router implements RegistrarContract
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Routing\Route
      */
-  protected function findRoute($request)
+    protected function findRoute($request)
     {
         $this->current = $route = $this->routes->match($request);
 
@@ -831,10 +831,10 @@ class Router implements RegistrarContract
      * @param  \Illuminate\Routing\Route  $route
      * @return \Illuminate\Routing\Route
      */
-  protected function substituteBindings($route)
+    protected function substituteBindings($route)
     {
-       foreach ($route->parameters() as $key => $value) {
-           if (isset($this->binders[$key])) {
+        foreach ($route->parameters() as $key => $value) {
+            if (isset($this->binders[$key])) {
                 $route->setParameter($key, $this->performBinding($key, $value, $route));
             }
         }
@@ -865,8 +865,8 @@ class Router implements RegistrarContract
 
                 $route->setParameter(
                     $parameter->name, $model->where(
-                        $model->getRouteKeyName(), $parameters[$parameter->name]
-                    )->{$method}()
+                    $model->getRouteKeyName(), $parameters[$parameter->name]
+                )->{$method}()
                 );
             }
         }
@@ -1280,3 +1280,4 @@ class Router implements RegistrarContract
         return $this->patterns;
     }
 }
+
