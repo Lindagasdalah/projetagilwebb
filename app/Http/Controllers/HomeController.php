@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Station;
 use Illuminate\Http\Request;
-
+use Session;
 class HomeController extends Controller
 {
     /**
@@ -26,11 +26,56 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+
     }
+
+    //Station*****************************************************
     public function AddStation(Request $request){
-     
-        return view('station.viewstation');
+        if($request->isMethod('post')){
+            $newstation=new Station();
+            $newstation->idstation=$request->input('ids');
+            $newstation->nomstation=$request->input('nom');
+            $newstation->adressestation=$request->input('adresse');
+            $result=     $newstation->save();
+            if($result){
+                Session::flash('message', 'Station est bien ajoutée');
+                //return redirect('viewstation');
+                return view('station/viewstation');
+
+            }else
+            {
+                Session::flash('message', '');
+                //return redirect('viewstation');
+                return view('station/viewstation');
+            }
+
+        }
+        return view('station/viewstation');
     }
+    //*****************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function AddGerant(){
 
