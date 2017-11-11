@@ -15,8 +15,15 @@ class produitController extends Controller
      */
     public function index()
     {
-        $promo= \App\Promotion::all();
-        return view('produit/viewproduit.index');
+
+
+        $promotions = DB::table('promotions')->get();
+        // tu sélectionnes toutes les entrées de la table 'products'
+
+        return View::make('produit.viewproduit')->with('promotions', $promotions);
+        // tu retourne la vue 'index' qui se trouve dans le dossier 'views/products' (ce sera un fichier index.blade.php si tu utilises blade)
+
+
     }
 
     /**
@@ -32,24 +39,23 @@ class produitController extends Controller
 
     public function addpromotion(Request $request)
     {
-        if ($request->isMethod('post')) {
-            $newpromotion = new Promotion();
-            $newpromotion->idpromotion = $request->input('idpromotion');
-            $newpromotion->nouveauprix = $request->input('prixfinal');
-            $newpromotion->pourcentage = $request->input('pourcentage');
-            $newpromotion->dd = $request->input('datedebut');
-            $newpromotion->df = $request->input('datefin');
+      // dd($request->all());
+        Promotion::create([
+            'id'=>$request->idpromotion,
+            'idproduit'=>$request->produit,
+            'idstation'=>$request->idstation,
+            'pourcentage'=>$request->pourcentage,
+            'prixfinal'=>$request->nouveauprix,
+            'datedebut'=>$request->date_debut,
+            'datefin'=>$request->date_fin
+        ]);
 
-            $resultat = $newpromotion->save();
-            if ($resultat){
-                return  response()-> json(array ('message'=>'ajout'));}
-            else
-            {
-                return  response()-> json(array ('message'=>'probleme'));
-            }
+        Session::flash('message', 'promotion est bien ajoutée');
 
-        }
-        return view('produit/viewproduit');
+
+        return redirect()->back();
+
+
     }
 
 
@@ -95,12 +101,23 @@ class produitController extends Controller
         //
     }
 
-    private function validateInput($request) {
-        return Validator::make($request, [
-            'idpromotion' => 'required|min:6',
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'idpromotion' => 'required',
+            'dd' => 'required',
+            'df' => 'required',
+            'pro' => 'required',
+            'sta' => 'required',
             'pourcentage' => 'required',
-            'nomproduit' => 'required',
-            'nomstation' => 'required',
         ]);
+
+        $input = $request->all();
+
+        Task::create($input);
+
+        Session::flash('flash_message', 'Task successfully added!');
+
+        return redirect()->back();
     }
 }

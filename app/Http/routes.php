@@ -24,13 +24,17 @@ Route::post('/station','HomeController@AddStation');
 
 Route::get('/gerant','HomeController@AddGerant');
 
-Route::get('/ajoutpromotion','produitController@addpromotion');
+/*Route::get('/ajoutpromotion','produitController@addpromotion');
 Route::post('/ajoutpromotion','produitController@addpromotion');
 
-
-Route::get('/p', function () {
+Route::resource('promotions', 'produitController');
+*/
+Route::get('/produit', function () {
     return view('produit/viewproduit');
 });
+
+//Route::get('/produit','produitController@Addpromotion');
+Route::post('/produit','produitController@Addpromotion');
 
 
 Route::get('/affproduit','HomeController@affproduit');

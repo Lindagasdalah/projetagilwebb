@@ -36,9 +36,9 @@ class HomeController extends Controller
 
         return view('gerant.viewgerant');
     }
-    public function Addproduit(){
+    public function Addproduit(Request $request){
 
-        return view('produit.viewproduit');
+
     }
 
     public function Affclient(){
