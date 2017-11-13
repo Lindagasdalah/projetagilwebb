@@ -70,7 +70,7 @@
             <div class="form-row">
                 <div class="col-md-6">
                     <label for="disabledSelect">Ancien prix :</label>
-                    <input class="form-control" id="ancienprix" name="ancienprix" type="text" placeholder="6dt" disabled="">
+                    <input class="form-control" id="ancienprix" name="ancienprix" type="text" placeholder="6dt" >
                 </div>
             </div>
             </br>
